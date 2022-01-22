@@ -2,7 +2,7 @@ package SpareArrays;
 
 public class SparseArraysLearn {
     public static void main(String[] args) {
-        // 创建一个二维数组
+        // 创建一个二维数组(11 *11)
         int[][] myArrays = new int[11][11];
 
         // 二维数组赋值(1表示黑棋，2表示白棋)
