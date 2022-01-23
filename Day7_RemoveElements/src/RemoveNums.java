@@ -1,4 +1,5 @@
 public class RemoveNums {
+    // 还在不完善
     public static void main(String[] args) {
         int[] tmp = {0, 0, 1};
 //        int[] ints1 = RemoveNums.test1(tmp, 1);
