@@ -1,5 +1,5 @@
 package LinkedNode;
-
+// 将链表反转
 public class Node {
     public int value;
     public Node next;
