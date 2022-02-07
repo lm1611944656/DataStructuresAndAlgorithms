@@ -1,9 +1,6 @@
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 /*
     原因：Arrays.asList 方法的返回类型是ArrayList类型，
     该类型并不是java.util.ArrayList 而是 java.util.Arrays.ArrayList
@@ -25,26 +22,27 @@ import java.util.List;
 
 public class Del_ArrayElement {
     @Test
-    public void test(){
-        int[] ints = {12,45,78,78,46};
+    public void test() {
+        int[] ints = {12, 45, 78, 78, 46};
         Integer[] integers = new Integer[ints.length];
 
         // 将基本类型的数组转化为包装类数组
-       for(int i = 0;i<ints.length;i++){
-           integers[i] = ints[i];
-       }
+        for (int i = 0; i < ints.length; i++) {
+            integers[i] = ints[i];
+        }
 
-       // 将数组转化为集合
+        // 将数组转化为集合
         List<Integer> integers1 = Arrays.asList(integers);
         ArrayList<Integer> integers2 = new ArrayList<>(integers1);
         integers2.add(98);
 
         Iterator<Integer> iterator = integers2.iterator();
-        while(iterator.hasNext()){
-            if(iterator.next().equals(78)){
+        while (iterator.hasNext()) {
+            if (iterator.next().equals(78)) {
                 iterator.remove();
             }
         }
+
         // 不推荐
 //        for(int i = 0;i<integers2.size();i++){
 //            if(integers2.get(i) == 78){
@@ -58,10 +56,64 @@ public class Del_ArrayElement {
         System.out.print(integers1);
         System.out.print(integers2);
         Object[] objects = integers2.toArray();
-        for(int i = 0;i<objects.length;i++){
-            System.out.print(objects[i] +"\t");
+        for (int i = 0; i < objects.length; i++) {
+            System.out.print(objects[i] + "\t");
         }
 
 
     }
+
+    // 利用ArrayList中contains()函数，撤除数组中的重复元素
+    @Test
+    public void test2() {
+        ArrayList<Object> objects = new ArrayList<>();
+        Integer[] integers = {12, 45, 78, 78, 78, 46};
+
+        for (int i = 0; i < integers.length; i++) {
+            if (!objects.contains(integers[i])) {
+                objects.add(integers[i]);
+            }
+        }
+        Iterator iterator = objects.iterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + "\t");
+        }
+
+
+    }
+    // 利用HashMap的无重复性，删除重复元素；（会打乱原来数组中的顺序）
+    @Test
+    public void test3() {
+        HashSet<Object> objects = new HashSet<>();
+        Integer[] integers = {79,12, 45, 78, 78, 78, 46,-78};
+        for (int i = 0; i < integers.length; i++) {
+            objects.add(integers[i]);
+        }
+
+
+        Iterator iterator = objects.iterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + "\t");
+        }
+
+
+    }
+    // 利用HashMap的无重复性，删除重复元素；（不会打乱原来数组中的顺序）
+    @Test
+    public void test4() {
+        LinkedHashSet<Object> objects = new LinkedHashSet<>();
+        Integer[] integers = {79,12, 45, 78, 78, 78, 46,-78};
+        for (int i = 0; i < integers.length; i++) {
+            objects.add(integers[i]);
+        }
+
+
+        Iterator iterator = objects.iterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + "\t");
+        }
+
+
+    }
+
 }
