@@ -12,8 +12,8 @@ public class Node {
         Node pre = null;
         Node next = null;
         while (head != null) {
-            next = head.next;
-            head.next = pre;
+            next = head.next;   // 链表的的下一个数保存起来
+            head.next = pre;    // 将链表的下一个指向指针掉头
             pre = head;
             head = next;
         }
